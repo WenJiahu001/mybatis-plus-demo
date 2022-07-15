@@ -7,10 +7,11 @@ ok
 - 优雅的填充createTime,updateTime
 - 优雅的逻辑删除，开发者无需关注逻辑删除
 - 优雅的mysql乐观锁，通过注解实现乐观锁，避免多人修改数据产生的线程安全问题
-
+- 优雅的aop日志 打印入参入库+自定义注解
 
 next
-- aop拦截日志打印入参+自定义注解
+- 主键生成策略用雪花id吧
+- 日志异步写 方案？elk？
 - security 实现简单 token验证 接入redis
 - 实现rbac模型
 - DockerFile 
