@@ -35,7 +35,7 @@ public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
 
     @ResultMap(value = "${entity}VO")
     @Select("<script>" +
-            " select a.* from user a " +
+            " select a.* from ${table.name} a " +
             " where a.deleted=0 " +
 #foreach($field in ${table.fields})
 #if(!${field.propertyName.equals("version")})
@@ -55,12 +55,12 @@ public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
 #end
 #end
             "</script>")
-    List<UserVO> selectListVo(${entity}QueryDTO dto);
+    List<${entity}VO> selectListVo(${entity}QueryDTO dto);
 
     @ResultMap(value = "${entity}VO")
-    @Select( " select a.* from user a " +
+    @Select(" select a.* from ${table.name} a " +
             " where a.id=#{id} and a.deleted=0 ")
-    UserVO selectDetailById(Integer id);
+    ${entity}VO selectDetailById(Integer id);
 
 
 }

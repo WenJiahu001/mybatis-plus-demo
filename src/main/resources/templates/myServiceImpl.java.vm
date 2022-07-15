@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import ${cfg.basePackage}.common.vo.PageResult;
 import ${cfg.basePackage}.common.vo.PageWrapper;
 import ${cfg.basePackage}.utils.PageUtils;
+import java.util.List;
 
 ##import com.baomidou.mybatisplus.core.metadata.IPage;
 
@@ -23,13 +24,13 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
     @Override
     public PageResult<${entity}VO> listVO(${entity}QueryDTO dto,PageWrapper wrapper) {
         PageUtils.startPage(wrapper.getPageIndex(), wrapper.getPageSize(), wrapper.getSortField(), wrapper.getSort());
-        List<UserVO> list = this.listVO(dto);
+        List<${entity}VO> list = this.listVO(dto);
         PageResult pageResult = PageUtils.genPageResult(list);
         return pageResult;
     }
     @Override
     public List<${entity}VO> listVO(${entity}QueryDTO dto) {
-        List<UserVO> list = this.getBaseMapper().selectListVo(dto);
+        List<${entity}VO> list = this.getBaseMapper().selectListVo(dto);
         return list;
     }
 
