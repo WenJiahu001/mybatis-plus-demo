@@ -10,7 +10,6 @@ ok
 - 优雅的aop日志 打印入参入库+自定义注解
 
 next
-- 主键生成策略用雪花id吧
 - 日志异步写 方案？elk？
 - security 实现简单 token验证 接入redis
 - 实现rbac模型
