@@ -20,6 +20,8 @@ import ${cfg.basePackage}.common.vo.PageResult;
 import ${cfg.basePackage}.common.vo.PageWrapper;
 import ${cfg.basePackage}.common.vo.R;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
+
 ##import com.baomidou.mybatisplus.core.metadata.IPage;
 
 
@@ -62,25 +64,25 @@ public class ${table.controllerName} {
 
     @ApiOperation(value = "新增")
     @PostMapping("/add")
-    public R add(@RequestBody ${entity}AddDTO data) {
+    public R add(@Valid @RequestBody ${entity}AddDTO data) {
         return ${table.entityPath}Service.add(data) ? R.ok() : R.error();
     }
 
     @ApiOperation(value = "修改")
     @PostMapping("/edit")
-    public R edit(@RequestBody ${entity}EditDTO data) {
+    public R edit(@Valid @RequestBody ${entity}EditDTO data) {
          return ${table.entityPath}Service.edit(data) ? R.ok() : R.error();
     }
 
     @ApiOperation(value = "删除")
     @PostMapping("/remove")
-    public R remove(@RequestBody IdDTO dto) {
+    public R remove(@Valid @RequestBody IdDTO dto) {
         return ${table.entityPath}Service.remove(dto.getId()) ? R.ok() : R.error();
     }
 
     @ApiOperation(value = "批量删除")
     @PostMapping("/batchRemove")
-    public R batchRemove(@RequestBody IdsDTO dto) {
+    public R batchRemove(@Valid @RequestBody IdsDTO dto) {
         return ${table.entityPath}Service.remove(dto.getIds()) ? R.ok() : R.error();
     }
 
