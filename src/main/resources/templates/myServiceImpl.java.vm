@@ -1,19 +1,15 @@
 package ${package.ServiceImpl};
 
-import cn.hutool.core.bean.BeanUtil;
 import ${package.Entity}.*;
 import ${package.Entity}.VO.*;
 import ${package.Entity}.DTO.*;
 import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-import java.util.List;
 import ${cfg.basePackage}.common.vo.PageResult;
 import ${cfg.basePackage}.common.vo.PageWrapper;
 import ${cfg.basePackage}.utils.PageUtils;
-import com.wjh.demo.common.BusinessTargetNotExistsException;
 
 ##import com.baomidou.mybatisplus.core.metadata.IPage;
 

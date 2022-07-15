@@ -1,4 +1,4 @@
-package com.wjh.demo.common;
+package com.wjh.demo.common.ex;
 
 import org.springframework.http.HttpStatus;
 
