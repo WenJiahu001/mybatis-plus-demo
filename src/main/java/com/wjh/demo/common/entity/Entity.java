@@ -14,7 +14,7 @@ import java.util.Date;
 @Data
 public class Entity {
 
-    @TableId(value = "id", type = IdType.AUTO)
+    @TableId(value = "id")
     private Long id;
 
     @ApiModelProperty(value = "创建时间")
