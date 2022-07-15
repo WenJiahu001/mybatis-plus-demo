@@ -56,7 +56,7 @@ public class PageUtils {
             if (!StringUtils.isBlank(ascOrDesc)) {
                 PageHelper.orderBy(filed + " " + ascOrDesc);
             } else {
-                PageHelper.orderBy(filed + " asc");
+                PageHelper.orderBy(filed + " desc");
             }
         }
     }
