@@ -1,0 +1,66 @@
+package ${package.Mapper};
+
+import ${package.Entity}.*;
+import ${package.Entity}.VO.*;
+import ${package.Entity}.DTO.*;
+import ${superMapperClassPackage};
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.ResultMap;
+import org.apache.ibatis.annotations.Results;
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} Mapper 接口
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${kotlin})
+interface ${table.mapperName} : ${superMapperClass}<${entity}>
+#else
+public interface ${table.mapperName} extends ${superMapperClass}<${entity}> {
+
+
+    @Select({"select 1 from ${table.name} limit 1"})
+    @Results(id = "${entity}VO", value = {
+#foreach($field in ${table.fields})
+        @Result(column = "${field.annotationColumnName}", property = "${field.propertyName}"),
+#end
+        @Result(column = "id", property = "id")
+    })
+    ${entity}VO resultMap();
+
+    @ResultMap(value = "${entity}VO")
+    @Select("<script>" +
+            " select a.* from user a " +
+            " where a.deleted=0 " +
+#foreach($field in ${table.fields})
+#if(!${field.propertyName.equals("version")})
+#if(${field.propertyType.equals("String")})
+#if(${field.propertyName.toLowerCase().contains("name")})
+            "<if test='${field.propertyName}!=null and ${field.propertyName}!=\"\"'> and a.${field.annotationColumnName} like CONCAT('%',#{${field.propertyName}},'%')</if>" +
+#else
+            "<if test='${field.propertyName}!=null and ${field.propertyName}!=\"\"'> and a.${field.annotationColumnName}=#{${field.propertyName}}</if>" +
+#end
+#elseif(${field.propertyType.equals("Date")})
+            "<if test='${field.propertyName}End!=null'> and a.${field.annotationColumnName} <![CDATA[<]]> #{${field.propertyName}End}</if>" +
+            "<if test='${field.propertyName}Begin!=null'> and a.${field.annotationColumnName} <![CDATA[>=]]> #{${field.propertyName}Begin}</if>" +
+#else
+            "<if test='${field.propertyName}!=null'> and a.${field.annotationColumnName}=#{${field.propertyName}}</if>" +
+#end
+#end
+#end
+#end
+            "</script>")
+    List<UserVO> selectListVo(${entity}QueryDTO dto);
+
+    @ResultMap(value = "${entity}VO")
+    @Select( " select a.* from user a " +
+            " where a.id=#{id} and a.deleted=0 ")
+    UserVO selectDetailById(Integer id);
+
+
+}

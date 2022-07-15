@@ -1,0 +1,36 @@
+package ${package.Service};
+
+import ${package.Entity}.*;
+import ${package.Entity}.VO.*;
+import ${package.Entity}.DTO.*;
+import ${cfg.basePackage}.common.dto.IdDTO;
+import ${cfg.basePackage}.common.dto.IdsDTO;
+import ${superServiceClassPackage};
+import ${cfg.basePackage}.common.vo.PageResult;
+import ${cfg.basePackage}.common.vo.PageWrapper;
+import java.util.List;
+
+import ${cfg.basePackage}.common.vo.PageResult;
+import ${cfg.basePackage}.common.vo.PageWrapper;
+
+/**
+ * $!{table.comment} 服务类
+ * @author ${author}
+ * @since ${date}
+ */
+public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
+
+    PageResult<${entity}VO> listVO(${entity}QueryDTO dto,PageWrapper wrapper);
+
+    List<${entity}VO> listVO(${entity}QueryDTO dto);
+
+    ${entity}VO getDetailById(Integer id);
+
+    boolean add(${entity}AddDTO dto);
+
+    boolean edit(${entity}EditDTO dto);
+
+    boolean remove(Long id);
+
+    boolean remove(List<Long> ids);
+}

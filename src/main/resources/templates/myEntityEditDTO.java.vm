@@ -1,0 +1,72 @@
+package ${package.Entity}.DTO;
+
+
+###foreach($pkg in ${table.importPackages})
+##import ${pkg};
+###end
+#if(${swagger2})
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+#end
+#if(${entitySerialVersionUID})
+import java.io.Serializable;
+#end
+#if(${entityLombokModel})
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import java.util.Date;
+#if(${chainModel})
+import lombok.experimental.Accessors;
+#end
+#end
+
+/**
+ * $!{table.comment}
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${entityLombokModel})
+@Data
+@EqualsAndHashCode(callSuper = false)
+###if(${superEntityClass})
+##@EqualsAndHashCode(callSuper = true)
+###else
+##@EqualsAndHashCode(callSuper = false)
+###end
+#if(${chainModel})
+@Accessors(chain = true)
+#end
+#end
+#if(${table.convert})
+@TableName("${table.name}")
+#end
+#if(${swagger2})
+@ApiModel(value = "$!{table.comment}修改实体类", description = "$!{table.comment}")
+#end
+public class ${entity}EditDTO implements Serializable{
+
+
+#if(${entitySerialVersionUID})
+    private static final long serialVersionUID=1L;
+#end
+
+    private Long id;
+
+## ----------  BEGIN 字段循环遍历  ----------
+#foreach($field in ${table.fields})
+#if(!${field.propertyName.equals("deleted")}&&!${field.propertyName.equals("version")}&&!${field.propertyName.equals("updateTime")}&&!${field.propertyName.equals("createTime")})
+#if("$!field.comment" != "")
+#if(${swagger2})
+    @ApiModelProperty(value = "${field.comment}")
+#else
+    /**
+     * ${field.comment}
+     */
+#end
+#end
+    private ${field.propertyType} ${field.propertyName};
+#end
+#end
+## ----------  END 字段循环遍历  ----------
+
+}
