@@ -39,6 +39,9 @@ public class PageUtils {
      * @param sort      排序方式
      */
     public static void startPage(Integer pageIndex, Integer pageSize, String sortField, String sort) {
+        if (StringUtils.isEmpty(sortField))
+            sortField = "id";
+
         if (pageIndex == null || pageIndex < 1) {
             pageIndex = 1;
         }

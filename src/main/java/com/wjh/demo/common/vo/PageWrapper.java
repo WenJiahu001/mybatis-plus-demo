@@ -25,10 +25,10 @@ public class PageWrapper {
     /**
      * 排序字段
      */
-    private String sortField = "id";
+    private String sortField;
 
     /**
      * asc or desc
      */
-    private String sort = "desc";
+    private String sort;
 }
