@@ -61,14 +61,14 @@ public class ${table.controllerName} {
     }
 
     @ApiOperation(value = "新增")
-    @PostMapping("/save")
-    public R addSave(@RequestBody ${entity}AddDTO data) {
+    @PostMapping("/add")
+    public R add(@RequestBody ${entity}AddDTO data) {
         return ${table.entityPath}Service.add(data) ? R.ok() : R.error();
     }
 
     @ApiOperation(value = "修改")
     @PostMapping("/edit")
-    public R editSave(@RequestBody ${entity}EditDTO data) {
+    public R edit(@RequestBody ${entity}EditDTO data) {
          return ${table.entityPath}Service.edit(data) ? R.ok() : R.error();
     }
 

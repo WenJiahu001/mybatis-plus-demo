@@ -2,6 +2,7 @@ package com.wjh.demo.common.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 /**
@@ -11,5 +12,6 @@ import java.util.List;
  */
 @Data
 public class IdsDTO {
+    @NotEmpty
     private List<Long> ids;
 }

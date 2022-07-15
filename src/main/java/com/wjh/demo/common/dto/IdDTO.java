@@ -2,6 +2,8 @@ package com.wjh.demo.common.dto;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * @author 文家虎
  * @Package com.wjh.demo.common.dto
@@ -9,5 +11,6 @@ import lombok.Data;
  */
 @Data
 public class IdDTO {
+    @NotNull
     private Long id;
 }

@@ -1,13 +1,19 @@
 package com.wjh.demo.common.ex;
 
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.wjh.demo.common.vo.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -71,6 +77,20 @@ public class MyExceptionHandler {
     public R handleDataIntegrityViolationException(DataIntegrityViolationException e) {
         log.error(e.getMessage(), e);
         return R.error("字段太长,超出数据库字段的长度");
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public R handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        log.error(e.getMessage(), e);
+        List<FieldError> fieldError = e.getFieldErrors();
+        if (CollectionUtils.isNotEmpty(fieldError)) {
+            String message = fieldError.stream()
+                    .map(item -> " [" + item.getField() + "] : " + item.getDefaultMessage())
+                    .collect(Collectors.joining("\\R\\n"));
+            return R.error(message);
+        } else {
+            return R.error("参数错误");
+        }
     }
 
 
