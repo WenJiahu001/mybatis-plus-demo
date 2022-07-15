@@ -86,7 +86,7 @@ public class MyExceptionHandler {
         if (CollectionUtils.isNotEmpty(fieldError)) {
             String message = fieldError.stream()
                     .map(item -> " [" + item.getField() + "] : " + item.getDefaultMessage())
-                    .collect(Collectors.joining("\\R\\n"));
+                    .collect(Collectors.joining(","));
             return R.error(message);
         } else {
             return R.error("参数错误");
