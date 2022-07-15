@@ -50,7 +50,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, User> implements UserS
     public boolean edit(UserEditDTO dto){
         User edit = new User();
         BeanUtils.copyProperties(dto, edit);
-        return this.save(edit);
+        return this.updateById(edit);
     }
 
     @Override

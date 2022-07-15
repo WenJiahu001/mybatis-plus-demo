@@ -51,7 +51,7 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
     public boolean edit(${entity}EditDTO dto){
         ${entity} edit = new ${entity}();
         BeanUtils.copyProperties(dto, edit);
-        return this.save(edit);
+        return this.updateById(edit);
     }
 
     @Override
