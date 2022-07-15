@@ -24,7 +24,7 @@ public class MybatisPlusConfig {
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         interceptor.addInnerInterceptor(optimisticLockerInnerInterceptor());
-        interceptor.addInnerInterceptor(paginationInnerInterceptor());
+//        interceptor.addInnerInterceptor(paginationInnerInterceptor());
         return interceptor;
     }
 
@@ -33,8 +33,9 @@ public class MybatisPlusConfig {
         return new OptimisticLockerInnerInterceptor();
     }
 
-    @Bean
-    public PaginationInnerInterceptor paginationInnerInterceptor() {
-        return new PaginationInnerInterceptor();
-    }
+    //不要这个，用pagehelper分页了
+//    @Bean
+//    public PaginationInnerInterceptor paginationInnerInterceptor() {
+//        return new PaginationInnerInterceptor();
+//    }
 }
