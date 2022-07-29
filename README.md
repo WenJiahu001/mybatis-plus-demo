@@ -10,9 +10,9 @@ ok
 - 统一aop日志 打印入参入库+自定义注解
 
 next
+- rbac模型
 - 日志异步写 方案？elk？
-- security 实现简单 token验证 接入redis
-- 实现rbac模型
+- security token验证 redis
 - DockerFile 
 - 借助 mybaits-plus 玩多租户
 - 数据权限怎么做

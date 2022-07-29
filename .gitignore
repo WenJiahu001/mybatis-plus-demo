@@ -1,5 +1,3 @@
 /target/
 /.idea/
 **.iml
-!/src/main/java/com/wjh/demo/business/system/
-/src/main/java/com/wjh/demo/business/
